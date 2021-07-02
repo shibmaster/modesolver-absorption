@@ -43,11 +43,12 @@ class Modedata:
             m=self.FindBeta('M',m)
             if len(modes) < 1:
                 modes=e
-            else:
+            elif len(e)>1:
                 modes=np.append(modes,e,axis=0)
-            idx.append(len(modes))
-            modes=np.append(modes,m,axis=0)
-            idx.append(len(modes))
+                idx.append(len(modes))
+            if len(m)>1:
+                modes=np.append(modes,m,axis=0)
+                idx.append(len(modes))
         print("")
         self.beta=modes
         self.mindex=idx
@@ -234,7 +235,7 @@ class Modedata:
                     k0=2*Pi/L               
                     N=self.TXmode(L,T,X)[1] #This is the real effective refractive index, kx/k0
                     kx=k0*N                 #The propagation constant (beta)
-                    ki=k0*self.n1Ii(L)/np.sin(T)        #This is the imaginary of the modes refractive index, kappa*k0/sin(theta)
+                    ki=k0*self.n1Ii(L)/np.sin(T)        #This is the imaginary of the modes refractive index, kappa*k0/sin(theta) (Big K, since the sin(T) in denominator)
                     #kyl=np.sqrt( kx**2 - k0**2)    #the decay constant in air, outside WG
                     #kyc=np.sqrt( - kx**2 + (kx/np.sin(T))**2)  #The decay constant in the WG core
                     arr.append([mod,L,kx,ki,k0])            #We also append them to the return array.           
@@ -326,9 +327,6 @@ class Modedata:
         #       print(m,'mode is TIR.,',j,'vs',len(beta))               # Check Datapoints per mode
         tirmodes=np.asarray(tirmodes)
         allmodes=np.asarray(allmodes)            
-            
-            
-            
         Lsta,Lend,Ldel,j=10,0,100,-1             #Deduce the Modedata parameters from the beta array
         LL=0.0          #Last lambda
         idx=[]          #Mode index array
@@ -355,7 +353,7 @@ class Modedata:
         self.beta=modes
     
 #### PLOT FUNCTIONS ####
-    def plDisp4(self,name,Mmin=0,Mmax=-1):  #Plotfunction of dispersion/absorption for beta vs. lambda for thickness h (um), name output name
+    def plDisp(self,name,Mmin=0,Mmax=-1):  #Plotfunction of dispersion/absorption for beta vs. lambda for thickness h (um), name output name
         S=self
         Lambs=[S.Lsta,S.Lend,S.Ldel]
         x=np.asarray(np.arange(*Lambs))
@@ -371,13 +369,13 @@ class Modedata:
         #                print('Mode from', lm/2,S.mindex[lm],'to',Mmax,S.mindex[2*Mmax])
             xy=[]
             for m in S.mindex[2*Mmin+1:2*Mmax]:
-                print(lm,m,'  ',end='')
+                #print(lm,m,'  ',end='')
                 [ xy.append([S.beta[x,1],S.beta[x,2],S.beta[x,3]]) for x in range(lm,m)]
                 #ax.scatter(S.beta[lm:m,1],S.beta[lm:m,2], marker='o',s=1,edgecolors='none', c=(1-np.exp(-2*S.beta[lm:m,3])), cmap=plt.cm.viridis)
                 lm=m
             xyz=np.asarray(xy)
             #print(xy)
-            print(xyz)
+            #print(xyz)
             ax.scatter(xyz[:,0],xyz[:,1], marker='o',s=1,edgecolors='none', c=(1-np.exp(-2*xyz[:,2])), cmap=plt.cm.viridis, norm=norm)
             ax.set_xlabel('Wavelength / um')
             ax.set_ylabel('Kx / 1/um ')
@@ -453,7 +451,7 @@ class Modedata:
             ax.legend()
             fig.savefig("Dispersion-{}.pdf".format(name), bbox_inches='tight')    
 
-    def plDisp(self,name,Mmin=0,Mmax=-1):   #Plotfunction of dispersion/absorption for beta vs. lambda for thickness h (um), name output name
+    def plDisp0(self,name,Mmin=0,Mmax=-1):   #Plotfunction of dispersion/absorption for beta vs. lambda for thickness h (um), name output name
             S=self
             Lambs=[S.Lsta,S.Lend,S.Ldel]
             x=np.asarray(np.arange(*Lambs))
