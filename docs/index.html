@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Modesolver and Slab Absorption 8-upload</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Modesolver and Slab Absorption 9-upload</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -15241,14 +15241,17 @@ Found modenumber: 16
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Let us recover eq.$\,$(2.33) of the Master Thesis, which stems from a paper by Yu et al: Fundamental limit of nanophotonic
     light trapping in solar cells. The absorption spectrum for a single resonance of a waveguide is given in by:</p>
-<p>$A(\omega)=\frac{\gamma_i\gamma_e}{\left(\omega-\omega_0\right)^2 +\left(\gamma_i+N\gamma_e\right)^2/4},$     $\,\,\,\,$(1)</p>
-<p>where $\gamma_i$ describes intrinsic absorption, $\gamma_e$ leakage to other channels (other resonance or free space radiation), $\omega_0$ is the frequency of the resonance, $N$ is the number of channels that are coupled with coupling constant $\gamma_e$.</p>
+\begin{equation}
+A(\omega)=\frac{\gamma_i\gamma_e}{\left(\omega-\omega_0\right)^2 +\left(\gamma_i+N\gamma_e\right)^2/4},     \,\,\,\,(1)
+\end{equation}<p>where $\gamma_i$ describes intrinsic absorption, $\gamma_e$ leakage to other channels (other resonance or free space radiation), $\omega_0$ is the frequency of the resonance, $N$ is the number of channels that are coupled with coupling constant $\gamma_e$.</p>
 <p>Integration of the spectrum yields the spectral cross-section, which has unit of frequency. The interpretation as given by Yu et al is as follows: "For an incident spectrum
 with bandwidth $\Delta\omega\gg\sigma$, a resonance contributes an additional $\sigma/\Delta\omega$ to the spectrally-averaged absorption coefficient."</p>
-<p>$\sigma=\int_{-\infty}^{\infty} A(\omega)d\omega%\leq\frac{2\pi\gamma_i}{N}$.   $\,\,\,\,$ (2)</p>
-<p>If we add the contributions from all individual resonances $m$ in the frequency range $[\omega,\omega+\Delta\omega]$, the upper limit for absorption is found in the equation below:</p>
-<p>$A_\mathrm{T}=\frac{1}{\Delta\omega}\sum_m\frac{\sigma_\mathrm{max}}{N}=\frac{1}{\Delta\omega}\sum_m\frac{2\pi\gamma_{i,m}}{N}$.    $\,\,\,\,$ (3)</p>
-
+\begin{equation}
+\sigma=\int_{-\infty}^{\infty} A(\omega)d\omega%\leq\frac{2\pi\gamma_i}{N}.   \,\,\,\, (2)
+\end{equation}<p>If we add the contributions from all individual resonances $m$ in the frequency range $[\omega,\omega+\Delta\omega]$, the upper limit for absorption is found in the equation below:</p>
+\begin{equation}
+A_\mathrm{T}=\frac{1}{\Delta\omega}\sum_m\frac{\sigma_\mathrm{max}}{N}=\frac{1}{\Delta\omega}\sum_m\frac{2\pi\gamma_{i,m}}{N}.    \,\,\,\, (3)
+\end{equation}
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -15259,31 +15262,35 @@ with bandwidth $\Delta\omega\gg\sigma$, a resonance contributes an additional $\
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>M=$\sum\limits_{m=1}^{m_\mathrm{tot}}\frac{2\pi\omega n_m^2}{c_0^2}\frac{L^2}{(2\pi)^2}\delta\omega.$ $\,\,\,\,$ (4)</p>
-
+\begin{equation}
+M=\sum\limits_{m=1}^{m_\mathrm{tot}}\frac{2\pi\omega n_m^2}{c_0^2}\frac{L^2}{(2\pi)^2}\delta\omega. \,\,\,\,(4)
+\end{equation}
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>If the complex refractive index ($n+i\kappa$) for a medium is known, its intrinsic loss rate $\gamma_i$ can be calculated as follows(From Yu et al.):</p>
-<!-- $\gamma_i=2\alpha v_\mathrm{G}/n=\frac{4\pi}{\lambda}\kappa\frac{c_0}{n^2},$ -->
-
-<p>$\gamma_i=\alpha_0\frac{c}{n}=2 k''\frac{c}{n}=\frac{4\pi}{\lambda}\kappa\frac{c}{n}$  $\,\,\,\,$ (5)</p>
-<p>Now follows the characterization of the channel number $N$, which is assumed the same for all resonances. In the supporting information, the number of channels is approximated as an area fraction in k-space,</p>
+\begin{equation}
+\gamma_i=\alpha_0\frac{c}{n}=2 k''\frac{c}{n}=\frac{4\pi}{\lambda}\kappa\frac{c}{n}. \,\,\,\, (5)
+\end{equation}<p>Now follows the characterization of the channel number $N$, which is assumed the same for all resonances. In the supporting information, the number of channels is approximated as an area fraction in k-space,</p>
 <p>$N=\frac{A}{A_m}$,</p>
 <p>where the total area $A$ is calculated from the interval of k-vectors $[k_1,k_2]$ that can be excited by the HUD-pattern,</p>
 <p>$A=\pi\left(k_1^2-k_2^2\right)$,</p>
 <p>and $A_m$ is the area occupied by a single resonance at</p>
 <p>$A_m=(\Delta k_m)^2$.</p>
-<p>Thus, $N=\frac{\pi\left(k_2^2-k_1^2\right)}{(\Delta k_m)^2}$. $\,\,\,\,$ (6)</p>
-<p>Substitution of $M,N$, and $\gamma_i$ into (2) yields:</p>
+<p>Thus, 
+\begin{equation}
+N=\frac{\pi\left(k_2^2-k_1^2\right)}{(\Delta k_m)^2}. \,\,\,\, (6)
+\end{equation}
+Substitution of $M,N$, and $\gamma_i$ into (2) yields:</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>$\tilde{A}=\frac{1}{\Delta\omega}\sum_\mathrm{m}\frac{4\pi\alpha_m k_m}{\left(k_2^2-k_1^2\right)}$. $\,\,\,\,$ (7)</p>
-
+\begin{equation}
+\tilde{A}=\frac{1}{\Delta\omega}\sum_\mathrm{m}\frac{4\pi\alpha_m k_m}{\left(k_2^2-k_1^2\right)}. \,\,\,\,(7)
+\end{equation}
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -15300,8 +15307,9 @@ Analytical Solutions".</p>
 <p>There are several equations derived by Green that are more or less approximate depending on the magnitude of the absorption coefficient $\alpha$ times thickness $W$, since also the radial distribution of light intensity from a  lambertian scatterer inside the absorber depends on the product $\alpha W$. The average pathlength of a light ray approaches $W$ for strong absorption $\alpha W&gt;5$, but can increase up to $4W$ in the weak absorptive limit.</p>
 <p>The product $\alpha W$ from Green can be identified with $\tilde{A}$ from (7) in our case, since it is unitless and the influence of the thickness is to determine the number of modes that take part in the sum over m.</p>
 <p>We'll look at the magnitude of $A_T$ across the spectral range below and decide for the appropriate optical pathlength enhancement factor $f_p$ there. The total absorption $A_{TT}$ is then defined as:</p>
-<p>$A_{T}(\omega)=\frac{1-\exp[-f_p \tilde{A}(\omega)]}{1-(1-n_m^{-1})\exp[-f_p \tilde{A}(\omega)]}.$ $\,\,\,\,$ (8)</p>
-
+\begin{equation}
+A_{T}(\omega)=\frac{1-\exp[-f_p \tilde{A}(\omega)]}{1-(1-n_m^{-1})\exp[-f_p \tilde{A}(\omega)]}. \,\,\,\, (8)
+\end{equation}
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -15551,7 +15559,7 @@ IA = \frac{1}{\int_\omega F(\omega) d\omega} \int_\omega A_{T}(\omega) F(\omega)
 <p><strong>eq7b(lamb,k1,k2)</strong> #Equation 7, version with N_m from Femius' equation (cp. Thesis sec. 2.2) for specific lambda</p>
 <p><strong>eq8a(alpha)</strong>     #Equation 8 with f_p=1, alpha the argument is supposed to be the return value of eq7</p>
 <p><strong>eq8b(alpha)</strong>     #Equation 8 with f_p=4, alpha the argument is supposed to be the return value of eq7</p>
-<p><strong>IA(k1,k2,eq7,eq8,Lstart,Lend,Ld)</strong></p>
+<p><strong>IA(k1,k2,eq7,eq8)</strong></p>
 
 <pre><code>#Spectrally averaged integrated absorption found through convolution of (8) with air mass 1.5 spectrum</code></pre>
 
